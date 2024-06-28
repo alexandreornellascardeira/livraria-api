@@ -1,0 +1,32 @@
+{
+    "author": {
+      "created": "Autor inserido com sucesso!",
+      "updated": "Autor alterado com sucesso!",
+      "deleted": "Autor excluído com sucesso!",
+      "not_found": "Autor não encontrado."
+    },
+    "cliente": {
+      "created": "Cliente inserido com sucesso!",
+      "updated": "Cliente alterado com sucesso!",
+      "deleted": "Cliente excluído com sucesso!",
+      "not_found": "Cliente não encontrado."
+    },
+    "livro": {
+      "created": "Livro inserido com sucesso!",
+      "updated": "Livro alterado com sucesso!",
+      "deleted": "Livro excluído com sucesso!",
+      "not_found": "Livro não encontrado."
+    },
+    "venda": {
+      "created": "Venda inserida com sucesso!",
+      "updated": "Venda alterada com sucesso!",
+      "deleted": "Venda excluído com sucesso!",
+      "not_found": "Venda não encontrado."
+    },
+    "avaliacao": {
+      "created": "Avaliação inserido com sucesso!",
+      "updated": "Avaliação alterado com sucesso!",
+      "deleted": "Avaliação excluído com sucesso!",
+      "not_found": "Avaliação não encontrado."
+    }
+  }

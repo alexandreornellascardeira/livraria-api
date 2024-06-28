@@ -1,0 +1,32 @@
+{
+    "autor": {
+      "created": "Author created successfully!",
+      "updated": "Author updated successfully!",
+      "deleted": "Author deleted successfully!",
+      "not_found": "Author not found."
+    },
+    "cliente": {
+      "created": "Customer created successfully!",
+      "updated": "Customer updated successfully!",
+      "deleted": "Customer deleted successfully!",
+      "not_found": "Customer not found."
+    },
+    "livro": {
+      "created": "Book created successfully!",
+      "updated": "Book updated successfully!",
+      "deleted": "Book deleted successfully!",
+      "not_found": "Book not found."
+    },
+    "venda": {
+      "created": "Ticket created successfully!",
+      "updated": "Ticket updated successfully!",
+      "deleted": "Ticket deleted successfully!",
+      "not_found": "Ticket not found."
+    },
+    "avaliacao": {
+      "created": "Comment created successfully!",
+      "updated": "Comment updated successfully!",
+      "deleted": "Comment deleted successfully!",
+      "not_found": "Comment not found."
+    }
+  }
