@@ -95,5 +95,6 @@ Este projeto está sob a licença (sua licença) - veja o arquivo [LICENSE.md](h
 * etc.
 
 
----
-⌨️ com ❤️ por [Armstrong Lohãns](https://gist.github.com/lohhans) 😊
+## 📄 Template do README 
+
+[Armstrong Lohãns](https://gist.github.com/lohhans) 
