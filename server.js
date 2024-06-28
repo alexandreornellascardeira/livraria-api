@@ -19,7 +19,7 @@ import vendaRouter from "./routes/venda.route.js"
 import ClienteService from "./services/cliente.service.js";
 
 
-
+/*TODO: CONCLUIR IMPLEMENTAÇÃO DE INTERNACIONALIZAÇÃO...*/
 i18next
   .use(Backend)
   .init({
@@ -42,10 +42,12 @@ const myFormat = printf(({ level, message, label, timestamp }) => {
   return `${timestamp} [${label}] ${level}: ${message}`;
 });
 
+ 
 global.logger = winston.createLogger({
   level: 'silly',//"info",//
   transports: [
     new (winston.transports.Console)(),
+    /*TODO: DESATIVAR GERAÇÃO DE LOGS EM AQUIVO AO PUBLICAR NO GOOGLE CLOUD...*/
     new (winston.transports.File)({ filename: "livraria-api.log" }),
     loggingWinston
   ],
