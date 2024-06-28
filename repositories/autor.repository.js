@@ -1,44 +1,25 @@
 import Autor from "../models/autor.model.js";
-
 import db from "./db.js";
-
 import { QueryTypes } from "sequelize";
 
 async function getAutors() {
 
-
-
     return await Autor.findAll();
-
-
 
 }
 
 async function getAutor(id) {
 
-
-
     return await Autor.findByPk(parseInt(id));
-
-
-
 
 }
 
 async function createAutor(autor) {
 
-
-
     return await Autor.create(autor);
-
-
-
-
 }
 
 async function deleteAutor(id) {
-
-
 
     await Autor.destroy(
         {
@@ -47,14 +28,9 @@ async function deleteAutor(id) {
             }
         }
     );
-
-
-
 }
 
 async function updateAutor(autor) {
-
-
 
     //Evitando o update na chave primária...
     const updateAutor = {
@@ -74,8 +50,6 @@ async function updateAutor(autor) {
 
     return await getAutor(autor.autor_id);
 
-
-
 }
 
 
@@ -84,7 +58,7 @@ async function getQtdLivrosByAutorId(autorId){
     const result =  await db.query(
         `SELECT getQtdLivrosByAutorId(${autorId}) as qtd`, {
         type: QueryTypes.SELECT,
-    }); // Access the count from the first row
+    });
     
 
     return result[0].qtd;

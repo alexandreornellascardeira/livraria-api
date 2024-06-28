@@ -1,16 +1,10 @@
 import mongoClient from "./mongodb.js";
-//import { ObjectId } from "mongodb";
-
 const db = mongoClient.db("bookstore");
 const collection = db.collection("livroInfo");
 
-
-
 async function createLivroInfo(livroInfo) {
 
-
   await collection.insertOne(livroInfo);
-
 
 }
 
@@ -22,24 +16,19 @@ async function updateLivroInfo(livroInfo) {
   );
 
 
-
 }
 
 async function deleteLivroInfo(livroId) {
 
-
   await collection.deleteOne({ livroId: parseInt(livroId) });
 
-
 }
-
 
 async function getLivroInfo(livroId) {
 
   return await collection.findOne({ livroId });
 
 }
-
 
 async function createAvaliacao(avaliacao, livroId) {
 
@@ -61,11 +50,9 @@ async function createAvaliacao(avaliacao, livroId) {
 
   livroInfo.avaliacoes.push(avaliacao);
 
-  //await collection.insertOne(livroInfo);
   updateLivroInfo(livroInfo);
 
 }
-
 
 async function getAvaliacao(livroId) {
 
@@ -74,8 +61,6 @@ async function getAvaliacao(livroId) {
 
 }
 
-
-
 async function deleteAvaliacao(livroId, index) {
 
   const livroInfo = await getLivroInfo(parseInt(livroId));
@@ -83,7 +68,6 @@ async function deleteAvaliacao(livroId, index) {
   livroInfo.avaliacoes.splice(index, 1);
 
   await updateLivroInfo(livroInfo);
-
 
 }
 
@@ -95,6 +79,4 @@ export default {
   getAvaliacao,
   deleteAvaliacao,
   deleteLivroInfo
-
-
 }

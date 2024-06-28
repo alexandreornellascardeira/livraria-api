@@ -1,7 +1,5 @@
 import Livro from "../models/livro.model.js";
-
 import db from "./db.js";
-
 import { QueryTypes,Op } from "sequelize";
 
 async function getLivros() {
@@ -18,7 +16,6 @@ async function getLivro(id) {
 
 async function getLivroByAutorId(autorId){
     
-
     return  await Livro.findAll({
         where: {
           autor_id: {
@@ -28,8 +25,7 @@ async function getLivroByAutorId(autorId){
       },
       { raw: true }
     );
-
-    
+   
 
 }
 
@@ -55,6 +51,7 @@ async function deleteLivro(id) {
 async function updateLivro(livro) {
 
     //Evitando update na chave primária...
+
     const updateLivro = {
 
         livro_id: livro.livro_id,
@@ -85,14 +82,11 @@ async function getQtdVendasByLivroId(livroId) {
     const result = await db.query(
         `SELECT getQtdVendasByLivroId(${livroId}) as qtd`, {
         type: QueryTypes.SELECT,
-    }); // Access the count from the first row
+    });
 
 
     return result[0].qtd;
 }
-
-
-
 
 export default {
     getLivros,

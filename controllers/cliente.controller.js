@@ -1,5 +1,4 @@
 import ClienteService from "../services/cliente.service.js";
-
 import clienteRepository from "../repositories/cliente.repository.js";
 
 const clienteService = new ClienteService(clienteRepository);

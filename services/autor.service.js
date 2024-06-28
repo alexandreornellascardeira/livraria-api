@@ -11,7 +11,6 @@ class AutorService {
       throw new Error("Informe os dados obrigatórios: Nome, email e telefone.");
     }
 
-
     return await this.autorRepository.createAutor(autor);
   }
 

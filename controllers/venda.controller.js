@@ -1,5 +1,4 @@
 import VendaService from "../services/venda.service.js";
-
 import vendaRepository from "../repositories/venda.repository.js";
 import livroRepository from "../repositories/livro.repository.js";
 
@@ -7,9 +6,7 @@ const vendaService = new VendaService(vendaRepository, livroRepository);
 
 async function createVenda(req, res, next) {
 
-
     let venda = req.body;
-
     
     if(!req.user.isAdmin){
 
@@ -17,7 +14,6 @@ async function createVenda(req, res, next) {
              throw new Error("Forbidden");
         }
     }
-
 
     try {
         
@@ -44,6 +40,7 @@ async function getVendas(req, res, next) {
              throw new Error("Forbidden");
         }
     }
+
     //Vendas por AutorId...
     const autorId = req.query.autorId; 
 
@@ -81,6 +78,7 @@ async function getVendas(req, res, next) {
 
         return;
     }
+    
     //Vendas por livroId...
     const livroId = req.query.livroId; 
 

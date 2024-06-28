@@ -132,6 +132,4 @@ class LivroService {
 }
 
 
-
-
 export default LivroService;

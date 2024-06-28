@@ -1,7 +1,5 @@
 import Venda from "../models/venda.model.js";
-
 import db from "./db.js";
-
 import { QueryTypes,Op } from "sequelize";
 
 async function getVendas() {
@@ -18,7 +16,6 @@ async function getVenda(id) {
 
 async function getVendasByClienteId(clienteId) {
 
-    
     return  await Venda.findAll({
         where: {
           cliente_id: {
@@ -29,9 +26,7 @@ async function getVendasByClienteId(clienteId) {
       { raw: true }
     );
 
-
 }
-
 
 async function getVendasByAutorId(autorId) {
 
@@ -42,11 +37,9 @@ async function getVendasByAutorId(autorId) {
     { raw: true }
     ); 
 
-
 }
 
 async function getVendasByLivroId(livroId) {
-
     
     return  await Venda.findAll({
         where: {
@@ -57,7 +50,6 @@ async function getVendasByLivroId(livroId) {
       },
       { raw: true }
     );
-
 
 }
 
@@ -96,8 +88,6 @@ async function updateVenda(venda) {
 
     return getVenda(venda.venda_id);
 
-
-
 }
 
 
@@ -106,8 +96,7 @@ async function getValorByLivroId(livroId) {
     const result = await db.query(
         `SELECT getValorByLivroId(${livroId}) as vl`, {
         type: QueryTypes.SELECT,
-    }); // Access the count from the first row
-
+    }); 
 
     return result[0].vl;
 }

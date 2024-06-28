@@ -1,7 +1,5 @@
 import Cliente from "../models/cliente.model.js";
-
 import db from "./db.js";
-
 import { QueryTypes } from "sequelize";
 
 
@@ -45,8 +43,6 @@ async function deleteCliente(id) {
 
 async function updateCliente(cliente) {
 
-
-
     //Evitando o update na chave primária...
     const updateCliente = {
         nome: cliente.nome,
@@ -68,7 +64,6 @@ async function updateCliente(cliente) {
 
     return await getCliente(cliente.cliente_id);
 
-
 }
 
 async function getQtdVendasByClienteId(clienteId) {
@@ -76,8 +71,7 @@ async function getQtdVendasByClienteId(clienteId) {
     const result = await db.query(
         `SELECT getQtdVendasByClienteId(${clienteId}) as qtd`, {
         type: QueryTypes.SELECT,
-    }); // Access the count from the first row
-
+    }); 
 
     return result[0].qtd;
 }

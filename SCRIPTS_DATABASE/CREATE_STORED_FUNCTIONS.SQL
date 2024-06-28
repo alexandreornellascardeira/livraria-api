@@ -19,7 +19,8 @@ BEGIN
   vendas v 
   ON 
   l.livro_id = v.livro_id
-  WHERE l.autor_id = p_autor_id
+  WHERE 
+    l.autor_id = p_autor_id
   ORDER BY
   	v.venda_id;
 END;
@@ -35,10 +36,8 @@ RETURNS integer
 as
 $func$
 
-
 declare
    p_ret integer;
-
 
 begin
   
@@ -54,7 +53,6 @@ begin
 
    return p_ret;
 
-
 END
 $func$ LANGUAGE plpgsql;
 
@@ -69,7 +67,6 @@ $func$
 
 declare
    p_ret integer;
-
 
 begin
   
@@ -101,7 +98,6 @@ $func$
 declare
    p_ret integer;
 
-
 begin
   
   	select
@@ -116,7 +112,6 @@ begin
 
    return p_ret;
 
-
 END
 $func$ LANGUAGE plpgsql;
 
@@ -128,10 +123,8 @@ RETURNS numeric
 as
 $func$
 
-
 declare
    p_ret numeric;
-
 
 begin
   
@@ -144,9 +137,7 @@ begin
 	where
 		livro_id = p_livro_id;
 
-
    return p_ret;
-
 
 END
 $func$ LANGUAGE plpgsql;

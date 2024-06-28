@@ -2,20 +2,21 @@
 import express from "express";
 import cors from "cors";
 import winston from "winston";
-import { LoggingWinston } from "@google-cloud/logging-winston";
-import swaggerUi from "swagger-ui-express";
-import { swaggerDocument } from "./doc.js";
-
-
 import i18next from "i18next";
 import Backend from "i18next-http-backend";
+import { LoggingWinston } from "@google-cloud/logging-winston";
+import swaggerUi from "swagger-ui-express";
 
+/*TODO: ATUALIZAR A DOCUMENTAÇÃO DA API...*/
+import { swaggerDocument } from "./doc.js";
 
+/*Rotas*/
 import clienteRouter from "./routes/cliente.route.js"
 import livroRouter from "./routes/livro.route.js"
 import autorRouter from "./routes/autor.route.js"
 import vendaRouter from "./routes/venda.route.js"
  
+/*Necessário para efetuar o login...*/
 import ClienteService from "./services/cliente.service.js";
 
 
@@ -89,7 +90,6 @@ const authenticate = async (req, res, next) => {
     return next();
   }
  
-
   const user = new ClienteService().getClienteLogin(username, password);
   
   if (!user) {
@@ -113,14 +113,11 @@ app.use("/livro", authenticate, livroRouter);
 app.use("/autor", authenticate, autorRouter);
 app.use("/venda", authenticate, vendaRouter);
 
-
-
 app.use((req, res, next) => {
   const userLocale = req.headers['accept-language'] || 'pt';
   i18next.changeLanguage(userLocale);
   next();
 });
-
 
 app.listen(8080, async () => {
   try {
