@@ -1,13 +1,22 @@
 import LivroService from "../services/livro.service.js";
+
 import livroRepository from "../repositories/livro.repository.js";
 import livroInfoRepository from "../repositories/livroInfo.repository.js";
 
-const livroService = new LivroService(livroRepository, livroInfoRepository);
+
+let livroService = null;
+
+function setLocale(locale){
+
+    if(!livroService) livroService = new LivroService(livroRepository,livroInfoRepository,locale);
+}
 
 async function createLivro(req, res, next) {
 
+    setLocale(req.getLocale());
+
     if (!req.user.isAdmin) {
-        throw new Error("Forbidden");
+        throw new Error(res.__('http_forbidden'));
     }
 
     try {
@@ -27,9 +36,11 @@ async function createLivro(req, res, next) {
 
 async function getLivros(req, res, next) {
 
+    setLocale(req.getLocale());
+
     //Qualquer tipo de usuário logado..
     if (!req.user) {
-        throw new Error("Forbidden");
+        throw new Error(res.__('http_forbidden'));
     }
 
     const autorId = req.query.autorId;
@@ -66,10 +77,11 @@ async function getLivros(req, res, next) {
 
 async function getLivro(req, res, next) {
 
+    setLocale(req.getLocale());
 
     //Qualquer tipo de usuário logado..
     if (!req.user) {
-        throw new Error("Forbidden");
+        throw new Error(res.__('http_forbidden'));
     }
 
 
@@ -88,9 +100,10 @@ async function getLivro(req, res, next) {
 
 async function deleteLivro(req, res, next) {
 
+    setLocale(req.getLocale());
 
     if (!req.user.isAdmin) {
-        throw new Error("Forbidden");
+        throw new Error(res.__('http_forbidden'));
     }
 
     try {
@@ -108,9 +121,10 @@ async function deleteLivro(req, res, next) {
 
 async function updateLivro(req, res, next) {
 
+    setLocale(req.getLocale());
 
     if (!req.user.isAdmin) {
-        throw new Error("Forbidden");
+        throw new Error(res.__('http_forbidden'));
     }
 
     try {
@@ -132,9 +146,10 @@ async function updateLivro(req, res, next) {
 
 async function createLivroInfo(req, res, next) {
 
+    setLocale(req.getLocale());
 
     if (!req.user.isAdmin) {
-        throw new Error("Forbidden");
+        throw new Error(res.__('http_forbidden'));
     }
 
     try {
@@ -155,9 +170,10 @@ async function createLivroInfo(req, res, next) {
 
 async function updateLivroInfo(req, res, next) {
 
+    setLocale(req.getLocale());
 
     if (!req.user.isAdmin) {
-        throw new Error("Forbidden");
+        throw new Error(res.__('http_forbidden'));
     }
 
     try {
@@ -177,9 +193,10 @@ async function updateLivroInfo(req, res, next) {
 
 async function deleteLivroInfo(req, res, next) {
 
+    setLocale(req.getLocale());
 
     if (!req.user.isAdmin) {
-        throw new Error("Forbidden");
+        throw new Error(res.__('http_forbidden'));
     }
 
     try {
@@ -200,9 +217,11 @@ async function deleteLivroInfo(req, res, next) {
 
 async function createAvaliacao(req, res, next) {
 
+    setLocale(req.getLocale());
+
     //Qualquer tipo de usuário logado..
     if (!req.user) {
-        throw new Error("Forbidden");
+        throw new Error(res.__('http_forbidden'));
     }
 
 
@@ -226,9 +245,10 @@ async function createAvaliacao(req, res, next) {
 
 async function deleteAvaliacao(req, res, next) {
 
+    setLocale(req.getLocale());
 
     if (!req.user.isAdmin) {
-        throw new Error("Forbidden");
+        throw new Error(res.__('http_forbidden'));
     }
 
     try {

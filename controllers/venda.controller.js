@@ -1,19 +1,29 @@
 import VendaService from "../services/venda.service.js";
+
 import vendaRepository from "../repositories/venda.repository.js";
 import livroRepository from "../repositories/livro.repository.js";
 
-const vendaService = new VendaService(vendaRepository, livroRepository);
+let vendaService = null;
+
+function setLocale(locale){
+
+    if(!vendaService) vendaService = new VendaService(vendaRepository,livroRepository,locale);
+}
 
 async function createVenda(req, res, next) {
 
+    setLocale(req.getLocale());
+
     let venda = req.body;
+
     
     if(!req.user.isAdmin){
 
         if(!req.user.cliente_id || req.user.cliente_id!==venda.cliente_id){
-             throw new Error("Forbidden");
+            throw new Error(res.__('http_forbidden'));
         }
     }
+
 
     try {
         
@@ -31,16 +41,17 @@ async function createVenda(req, res, next) {
 
 async function getVendas(req, res, next) {
 
+    setLocale(req.getLocale());
+
     //Vendas por clienteId...
     const cliente_id = req.query.clienteId;
     
     if(!req.user.isAdmin){
 
         if(!req.user.cliente_id  || !cliente_id  ||req.user.cliente_id!==cliente_id){
-             throw new Error("Forbidden");
+            throw new Error(res.__('http_forbidden'));
         }
     }
-
     //Vendas por AutorId...
     const autorId = req.query.autorId; 
 
@@ -78,7 +89,6 @@ async function getVendas(req, res, next) {
 
         return;
     }
-    
     //Vendas por livroId...
     const livroId = req.query.livroId; 
 
@@ -114,6 +124,7 @@ async function getVendas(req, res, next) {
 
 async function getVenda(req, res, next) {
 
+    setLocale(req.getLocale());
   
     try {
 
@@ -123,7 +134,7 @@ async function getVenda(req, res, next) {
         if(!req.user.isAdmin){
 
             if(!req.user.cliente_id  || !venda || req.user.cliente_id!==venda.cliente_id){
-                throw new Error("Forbidden");
+                throw new Error(res.__('http_forbidden'));
             }
         }
 
@@ -138,9 +149,10 @@ async function getVenda(req, res, next) {
 
 async function deleteVenda(req, res, next) {
 
+    setLocale(req.getLocale());
 
     if(!req.user.isAdmin){
-        throw new Error("Forbidden");
+        throw new Error(res.__('http_forbidden'));
     }
 
     try {
@@ -158,9 +170,10 @@ async function deleteVenda(req, res, next) {
 
 async function updateVenda(req, res, next) {
 
+    setLocale(req.getLocale());
 
     if(!req.user.isAdmin){
-        throw new Error("Forbidden");
+        throw new Error(res.__('http_forbidden'));
     }
 
     try {

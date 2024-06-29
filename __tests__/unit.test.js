@@ -1,17 +1,13 @@
 import { jest, describe, expect, test, beforeEach } from '@jest/globals';
-
 import { faker } from '@faker-js/faker';
-
+import i18n from 'i18n';
 
 import LivroService from "../services/livro.service.js";
 import VendaService from "../services/venda.service.js";
-
-
 import ClienteService from "../services/cliente.service.js";
-
-
 import AutorService from "../services/autor.service.js";
 
+const locale="pt";
 
 let mockClienteId = 1;
 
@@ -111,7 +107,7 @@ describe('Unit Tests - Cliente', () => {
 
         showInfo(`getCliente Mock by id: ${id}`);
 
-        showInfo(`Clientees: ${JSON.stringify(clientesList)}`)
+        showInfo(`Clientes: ${JSON.stringify(clientesList)}`)
         let clienteEnc = null;
 
         clientesList.forEach((clienteItem) => {
@@ -146,7 +142,7 @@ describe('Unit Tests - Cliente', () => {
             }
         });
 
-        if (clienteEnc == null) throw new Error("Cliente não encontrado!");
+        if (clienteEnc == null) throw new Error(i18n.__({ phrase: 'cliente.data_not_found', locale: locale }));
 
         clientesList.pop(clienteEnc);
     };
@@ -458,7 +454,7 @@ describe('Unit Tests - Autor', () => {
         //Muda o comportamento para executar a função "mockada"...
         mockAutorRepositoryFail.createAutor.mockResolvedValue(newAutorData);
 
-        const autorServiceFail = new AutorService(mockAutorRepositoryFail);
+        const autorServiceFail = new AutorService(mockAutorRepositoryFail,locale);
 
         try {
             await autorServiceFail.createAutor(newAutorData);

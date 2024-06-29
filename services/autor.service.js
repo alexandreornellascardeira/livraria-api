@@ -1,17 +1,19 @@
+import i18n from 'i18n';
 
 class AutorService {
 
-  constructor(autorRepository) {
+  constructor(autorRepository, locale) {
     this.autorRepository = autorRepository;
+    this.locale=locale;
   }
 
   async createAutor(autor) {
 
     if (!autor.nome || !autor.email || !autor.telefone) {
-      throw new Error("Informe os dados obrigatórios: Nome, email e telefone.");
+      throw new Error(i18n.__({ phrase: 'autor.data_required_service', locale: this.locale }));
     }
 
-    return await this.autorRepository.createAutor(autor);
+   return await this.autorRepository.createAutor(autor);
   }
 
 
@@ -28,7 +30,7 @@ class AutorService {
     const autorEnc = await this.getAutor(autor.autor_id);
 
     if (!autorEnc) {
-      throw new Error('Autor não encontrado!');
+      throw new Error(i18n.__({ phrase: 'autor.data_not_foud', locale: this.locale }));
     }
 
     return await this.autorRepository.updateAutor(autor);
@@ -39,14 +41,14 @@ class AutorService {
     const autor = await this.getAutor(id);
 
     if (!autor) {
-      throw new Error('Autor não encontrado!');
+      throw new Error(i18n.__({ phrase: 'autor.data_not_foud', locale: this.locale }));
     }
 
     //Verifica se existem vendas para o cliente...
     const qtLivros=await this.autorRepository.getQtdLivrosByAutorId(id);
 
     if(qtLivros>0){
-        throw new Error('O autor possui livros e não pode ser excluído!');
+        throw new Error(i18n.__({ phrase: 'autor.delete_retricted', locale: this.locale }));
     }
 
     return await this.autorRepository.deleteAutor(id);

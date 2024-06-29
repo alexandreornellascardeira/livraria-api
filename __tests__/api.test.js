@@ -12,7 +12,7 @@ describe('API Tests', () => {
     let mockClienteId;
     let mockAutorId;
     let mockVendaId;
-    let mockAvaliacaoId;
+   
 
     let createdLivro;
     let createdCliente;

@@ -1,16 +1,19 @@
 
+import i18n from 'i18n';
+
 class LivroService {
 
-    constructor(livroRepository, livroInfoRepository) {
+    constructor(livroRepository, livroInfoRepository, locale) {
         this.livroRepository = livroRepository;
         this.livroInfoRepository = livroInfoRepository;
+        this.locale=locale;
     }
 
 
     async createLivro(livro) {
 
         if (!livro.autor_id || !livro.nome || !livro.valor || !livro.estoque) {
-            throw new Error("Informe os dados obrigatórios: ID do autor, nome, valor e estoque.");
+            throw new Error(i18n.__({ phrase: 'livro.data_not_found', locale: this.locale }));
         }
 
 
@@ -25,7 +28,7 @@ class LivroService {
     async getLivro(livroId) {
 
         if (!livroId) {
-            throw new Error('Informe o ID do livro!');
+            throw new Error(i18n.__({ phrase: 'livro.id_required', locale: this.locale }));
         }
 
         const livro = await this.livroRepository.getLivro(livroId);
@@ -40,7 +43,7 @@ class LivroService {
     async getLivroByAutorId(autorId) {
 
         if (!autorId) {
-            throw new Error('Informe o ID do autor!');
+            throw new Error(i18n.__({ phrase: 'autor.id_required', locale: this.locale }));
         }
 
         const livros = await this.livroRepository.getLivroByAutorId(autorId);
@@ -54,11 +57,11 @@ class LivroService {
         const livroEnc = await this.getLivro(livro.livro_id);
 
         if (!livroEnc) {
-            throw new Error('Livro não encontrado!');
+            throw new Error(i18n.__({ phrase: 'livro.data_not_found', locale: this.locale }));
         }
 
         if (livro.autor_id || livro.nome) {
-            throw new Error('Não é permitido alterar o autor e o nome do livro!');
+            throw new Error(i18n.__({ phrase: 'livro.update_denied', locale: this.locale }));
         }
         return await this.livroRepository.updateLivro(livro);
     }
@@ -68,14 +71,14 @@ class LivroService {
         const livro = await this.getLivro(id);
 
         if (!livro) {
-            throw new Error('Livro não encontrado!');
+            throw new Error(i18n.__({ phrase: 'livro.not_found', locale: this.locale }));
         }
 
         //Verifica se existem vendas para o cliente...
         const qtVendas = await this.livroRepository.getQtdVendasByLivroId(id);
 
         if (qtVendas > 0) {
-            throw new Error('O livro possui vendas e não pode ser excluído!');
+            throw new Error(i18n.__({ phrase: 'livro.delete_denied', locale: this.locale }));
         }
 
 
@@ -85,7 +88,7 @@ class LivroService {
     async createLivroInfo(livroInfo) {
 
         if (!livroInfo.livroId) {
-            throw new Error("LivroId não informado!");
+            throw new Error(i18n.__({ phrase: 'livro.id_required', locale: this.locale }));
         }
         await this.livroInfoRepository.createLivroInfo(livroInfo);
     }
@@ -93,7 +96,7 @@ class LivroService {
     async updateLivroInfo(livroInfo) {
 
         if (!livroInfo.livroId) {
-            throw new Error("LivroId não informado!");
+            throw new Error(i18n.__({ phrase: 'livro.id_required', locale: this.locale }));
         }
 
 
@@ -105,7 +108,7 @@ class LivroService {
         const livro = await this.getLivro(livroId);
 
         if (!livro) {
-            throw new Error('Livro não encontrado!');
+            throw new Error(i18n.__({ phrase: 'livro.not_found', locale: this.locale }));
         }
 
         return await this.livroInfoRepository.deleteLivroInfo(livroId);
@@ -119,7 +122,7 @@ class LivroService {
     async createAvaliacao(avaliacao, livroId) {
 
         if (!livroId || !avaliacao.nome || !avaliacao.nota || !avaliacao.avaliacao) {
-            throw new Error("Os seguintes parâmetros são obrigatórios: Id do Livro, autor, nota e avaliação!");
+            throw new Error(i18n.__({ phrase: 'livro.delete_denied', locale: this.locale }));
         }
 
         return await this.livroInfoRepository.createAvaliacao(avaliacao, livroId);
@@ -130,6 +133,8 @@ class LivroService {
         return await this.livroInfoRepository.deleteAvaliacao(livroId, index);
     }
 }
+
+
 
 
 export default LivroService;

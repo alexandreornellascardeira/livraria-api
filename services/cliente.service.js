@@ -1,10 +1,12 @@
+import i18n from 'i18n';
 import bcrypt from "bcrypt";
 import clienteRepository from "../repositories/cliente.repository.js";
 
 class ClienteService {
 
-    constructor(clienteRepository) {
+    constructor(clienteRepository, locale) {
         this.clienteRepository = clienteRepository;
+        this.locale=locale;
     }
 
     async hashPassword(plainTextPassword) {
@@ -25,7 +27,7 @@ class ClienteService {
     async createCliente(cliente) {
 
         if (!cliente.nome || !cliente.email || !cliente.senha || !cliente.telefone || !cliente.endereco) {
-            throw new Error("Informe os dados obrigatórios: Nome, email, senha, telefone e endereço.");
+            throw new Error(i18n.__({ phrase: 'cliente.data_required_service', locale: this.locale }) );
         }
 
         //Tratamento de senhas...
@@ -82,7 +84,7 @@ class ClienteService {
         const clienteEnc = await this.getCliente(cliente.cliente_id);
 
         if (!clienteEnc) {
-            throw new Error('Cliente não encontrado!');
+            throw new Error(i18n.__({ phrase: 'cliente.data_not_found', locale: this.locale }));
         }
 
         return await this.clienteRepository.updateCliente(cliente);
@@ -93,14 +95,14 @@ class ClienteService {
         const cliente = await this.getCliente(id);
 
         if (!cliente) {
-            throw new Error('Cliente não encontrado!');
+            throw new Error(i18n.__({ phrase: 'cliente.data_not_found', locale: this.locale }));
         }
 
         //Verifica se existem vendas para o cliente...
         const qtVendas = await this.clienteRepository.getQtdVendasByClienteId(id);
 
         if (qtVendas > 0) {
-            throw new Error('O cliente possui vendas e não pode ser excluído!');
+            throw new Error(i18n.__({ phrase: 'cliente.delete_denied', locale: this.locale }));
         }
 
         return await this.clienteRepository.deleteCliente(id);

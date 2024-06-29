@@ -1,18 +1,20 @@
+import i18n from 'i18n';
 
 class VendaService {
 
-    constructor(vendaRepository, livroRepository) {
+    constructor(vendaRepository, livroRepository,locale) {
         this.vendaRepository = vendaRepository;
         this.livroRepository = livroRepository;
+        this.locale=locale;
     }
 
     async createVenda(venda) {
 
         if (!venda.cliente_id || !venda.livro_id || !venda.data_venda) {
-            throw new Error("Informe os dados obrigatórios: Id do Cliente, Id do Livro e data da venda!");
+            throw new Error(i18n.__({ phrase: 'venda.data_required', locale: this.locale }));
         }
         if (venda.valor) {
-            throw new Error("O valor da venda não pode ser informado!");
+            throw new Error(i18n.__({ phrase: 'venda.data_not_required', locale: this.locale }));
         }
         try {
 

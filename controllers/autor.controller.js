@@ -1,12 +1,21 @@
 import AutorService from "../services/autor.service.js";
 import autorRepository from "../repositories/autor.repository.js";
  
-const autorService = new AutorService(autorRepository);
+let autorService = null;
+
+function setLocale(locale){
+
+    if(autorService) return autorService;
+
+    autorService = new AutorService(autorRepository,locale);
+}
 
 async function createAutor(req, res, next) {
 
+    setLocale(req.getLocale());
+
     if(!req.user.isAdmin){
-        throw new Error("Forbidden");
+        throw new Error(res.__('http_forbidden'));
     }
 
     try {
@@ -27,9 +36,10 @@ async function createAutor(req, res, next) {
 
 async function getAutors(req, res, next) {
 
-    
+    setLocale(req.getLocale());
+
     if(!req.user.isAdmin){
-        throw new Error("Forbidden");
+        throw new Error(res.__('HTTP_FORBIDDEN'));
     }
 
     try {
@@ -47,9 +57,10 @@ async function getAutors(req, res, next) {
 
 async function getAutor(req, res, next) {
 
+    setLocale(req.getLocale());
 
     if(!req.user.isAdmin){
-        throw new Error("Forbidden");
+        throw new Error(res.__('HTTP_FORBIDDEN'));
     }
 
     try {
@@ -67,9 +78,10 @@ async function getAutor(req, res, next) {
 
 async function deleteAutor(req, res, next) {
 
+    setLocale(req.getLocale());
 
     if(!req.user.isAdmin){
-        throw new Error("Forbidden");
+        throw new Error(res.__('HTTP_FORBIDDEN'));
     }
 
     try {
@@ -87,9 +99,10 @@ async function deleteAutor(req, res, next) {
 
 async function updateAutor(req, res, next) {
 
-
+    setLocale(req.getLocale());
+    
     if(!req.user.isAdmin){
-        throw new Error("Forbidden");
+        throw new Error(res.__('HTTP_FORBIDDEN'));
     }
     
     try {
@@ -97,7 +110,8 @@ async function updateAutor(req, res, next) {
         const autor = req.body;
 
         if (!autor.autor_id || !autor.nome || !autor.email ||  !autor.telefone) {
-            throw new Error("Informe os dados obrigatórios: ID, Nome, email, e telefone.");
+            throw new Error(res.__('autor.data_required'));
+          
         }
 
         const updateAutor=await autorService.updateAutor(autor);

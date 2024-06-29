@@ -1,32 +1,56 @@
 {
-    "author": {
-      "created": "Autor inserido com sucesso!",
-      "updated": "Autor alterado com sucesso!",
-      "deleted": "Autor excluído com sucesso!",
-      "not_found": "Autor não encontrado."
-    },
-    "cliente": {
-      "created": "Cliente inserido com sucesso!",
-      "updated": "Cliente alterado com sucesso!",
-      "deleted": "Cliente excluído com sucesso!",
-      "not_found": "Cliente não encontrado."
-    },
-    "livro": {
-      "created": "Livro inserido com sucesso!",
-      "updated": "Livro alterado com sucesso!",
-      "deleted": "Livro excluído com sucesso!",
-      "not_found": "Livro não encontrado."
-    },
-    "venda": {
-      "created": "Venda inserida com sucesso!",
-      "updated": "Venda alterada com sucesso!",
-      "deleted": "Venda excluído com sucesso!",
-      "not_found": "Venda não encontrado."
-    },
-    "avaliacao": {
-      "created": "Avaliação inserido com sucesso!",
-      "updated": "Avaliação alterado com sucesso!",
-      "deleted": "Avaliação excluído com sucesso!",
-      "not_found": "Avaliação não encontrado."
-    }
-  }
+	"http_forbidden": "Acesso negado.",
+	"autor": {
+		"created": "Autor inserido com sucesso!",
+		"updated": "Autor alterado com sucesso!",
+		"deleted": "Autor excluído com sucesso!",
+		"not_found": "Autor não encontrado.",
+		"data_required": "Informe os dados obrigatórios: ID, Nome, email, e telefone.",
+		"data_required_service": "Informe os dados obrigatórios: Nome, email e telefone.",
+		"data_not_found": "Autor não encontrado!",
+		"delete_denied": "O autor possui livros e não pode ser excluído!"
+	},
+	"cliente": {
+		"created": "Cliente inserido com sucesso!",
+		"updated": "Cliente alterado com sucesso!",
+		"deleted": "Cliente excluído com sucesso!",
+		"not_found": "Cliente não encontrado!",
+		"data_required": "Informe os dados obrigatórios: Nome, email, senha, telefone e endereço.",
+		"id_required": "Informe o ID do cliente!",
+		"delete_denied": "O cliente possui vendas e não pode ser excluído!"
+	},
+	"livro": {
+		"created": "Livro inserido com sucesso!",
+		"updated": "Livro alterado com sucesso!",
+		"deleted": "Livro excluído com sucesso!",
+		"not_found": "Livro não encontrado.",
+		"data_required": "Informe os dados obrigatórios: ID do autor, nome, valor e estoque.",
+		"id_required": "Informe o ID do livro!",
+		"delete_denied": "Os seguintes parâmetros são obrigatórios: Id do Livro, autor, nota e avaliação!",
+		"update_denied": "Não é permitido alterar o autor e o nome do livro!"
+	},
+	"venda": {
+		"created": "Venda inserida com sucesso!",
+		"updated": "Venda alterada com sucesso!",
+		"deleted": "Venda excluído com sucesso!",
+		"not_found": "Venda não encontrado.",
+		"data_required": "Informe os dados obrigatórios: Id do Cliente, Id do Livro e data da venda!",
+		"id_required": "Informe o ID da venda!",
+		"delete_denied": "Exclusão não permitida!",
+		"data_not_required": "O valor da venda não pode ser informado!"
+	},
+	"avaliacao": {
+		"created": "Avaliação inserido com sucesso!",
+		"updated": "Avaliação alterado com sucesso!",
+		"deleted": "Avaliação excluído com sucesso!",
+		"not_found": "Avaliação não encontrado.",
+		"data_required": "Os seguintes parâmetros são obrigatórios!",
+		"id_required": "Informe o ID da avaliação!",
+		"delete_denied": "Exclusão não permitida!"
+	},
+	"livro.data_not_found": "livro.data_not_found",
+	"livro.id_required": "livro.id_required",
+	"venda.data_required": "venda.data_required",
+	"autor.data_required": "autor.data_required",
+	"cliente.data_required": "cliente.data_required"
+}

@@ -1,13 +1,20 @@
 import ClienteService from "../services/cliente.service.js";
+
 import clienteRepository from "../repositories/cliente.repository.js";
 
-const clienteService = new ClienteService(clienteRepository);
+let clienteService = null;
+
+function setLocale(locale){
+
+    if(!clienteService) clienteService = new ClienteService(clienteRepository,locale);
+}
 
 async function createCliente(req, res, next) {
 
+    setLocale(req.getLocale());
 
     if(!req.user.isAdmin){
-        throw new Error("Forbidden");
+        throw new Error(res.__('http_forbidden'));
     }
 
     try {
@@ -27,9 +34,10 @@ async function createCliente(req, res, next) {
 
 async function getClientes(req, res, next) {
 
+    setLocale(req.getLocale());
     
     if(!req.user.isAdmin){
-        throw new Error("Forbidden");
+        throw new Error(res.__('http_forbidden'));
     }
 
     try {
@@ -46,12 +54,14 @@ async function getClientes(req, res, next) {
 
 async function getCliente(req, res, next) {
 
+    setLocale(req.getLocale());
+
     const cliente_id = req.params.id;
 
     if(!req.user.isAdmin){
 
         if(!req.user.cliente_id || req.user.cliente_id!==cliente_id){
-             throw new Error("Forbidden");
+            throw new Error(res.__('http_forbidden'));
         }
     }
 
@@ -69,10 +79,11 @@ async function getCliente(req, res, next) {
 
 async function deleteCliente(req, res, next) {
 
+    setLocale(req.getLocale());
 
     if(!req.user.isAdmin){
 
-        throw new Error("Forbidden");
+        throw new Error(res.__('http_forbidden'));
     }
 
     try {
@@ -90,16 +101,18 @@ async function deleteCliente(req, res, next) {
 
 async function updateCliente(req, res, next) {
 
+    setLocale(req.getLocale());
+    
     const cliente = req.body;
 
     if (!cliente.cliente_id || !cliente.nome || !cliente.email || !cliente.senha || !cliente.telefone || !cliente.endereco) {
-        throw new Error("Informe os dados obrigatórios: Nome, email, senha, telefone e endereço.");
+        throw new Error(res.__('cliente.data_required'));
     }
 
     if(!req.user.isAdmin){
 
         if(!req.user.cliente_id || req.user.cliente_id!==cliente.cliente_id){
-             throw new Error("Forbidden");
+            throw new Error(res.__('http_forbidden'));
         }
     }
 

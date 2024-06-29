@@ -1,32 +1,49 @@
 {
+  "http_forbidden": "Forbidden",
     "autor": {
       "created": "Author created successfully!",
       "updated": "Author updated successfully!",
       "deleted": "Author deleted successfully!",
-      "not_found": "Author not found."
+      "not_found": "Author not found.",
+      "data_required": "The ID, Name, email and phone number are required.",
+      "id_required": "Author ID is required!",
+      "delete_denied": "Author has book sold and can't be deleted!"
     },
     "cliente": {
       "created": "Customer created successfully!",
       "updated": "Customer updated successfully!",
       "deleted": "Customer deleted successfully!",
-      "not_found": "Customer not found."
+      "not_found": "Customer not found.",
+      "data_required": "Name, email, password, phone number and address are required.",
+      "id_required": "Book ID is required!",
+      "delete_denied": "Customer has book sold and can't be deleted!"
     },
     "livro": {
       "created": "Book created successfully!",
       "updated": "Book updated successfully!",
       "deleted": "Book deleted successfully!",
-      "not_found": "Book not found."
+      "not_found": "Book not found.",
+      "data_required": "Name, email, password, phone number and address are required.",
+      "id_required": "Book ID is required!",
+      "delete_denied": "Customer has book sold and can't be deleted!",
+      "update_denied": "Author and book title can't be deleted!"
     },
     "venda": {
       "created": "Ticket created successfully!",
       "updated": "Ticket updated successfully!",
       "deleted": "Ticket deleted successfully!",
-      "not_found": "Ticket not found."
+      "not_found": "Ticket not found.",
+      "data_required": "Name, email, password, phone number and address are required.",
+      "id_required": "Sell ID is required!",
+      "delete_denied": "Sell can't be deleted!"
     },
     "avaliacao": {
       "created": "Comment created successfully!",
       "updated": "Comment updated successfully!",
       "deleted": "Comment deleted successfully!",
-      "not_found": "Comment not found."
+      "not_found": "Comment not found.",
+      "data_required": "Is required.",
+      "id_required": "Avaliation ID is required!",
+      "delete_denied": "Avaliation can't be deleted!"
     }
   }
